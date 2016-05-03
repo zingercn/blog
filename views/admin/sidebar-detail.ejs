@@ -1,0 +1,114 @@
+<%- include include/head-begin %>
+<%- include include/css %>
+<%- include include/head-end %>
+
+<%- include include/site-header %>
+<%- include include/sidebar %>
+<div class="main">
+	<ul class="breadcrumb mb10">
+		<li><a href="/admin/sidebar/list">侧边栏管理</a></li>
+		<li class="active"><%= title %></li>
+	</ul>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<ul>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10">标题</label>
+					<input type="text" class="input w250 p6 font12" id="title" value="<%= sidebar.title %>" data-id="<%= sidebar._id %>">
+				</li>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10">图标</label>
+					<input type="text" class="input w250 p6 font12" id="icon" value="<%= sidebar.icon %>">
+				</li>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10">是否是时间</label>
+					<% if(sidebar.isTime){ %>
+					<a href="javascript:;" class="toggle" id="isTime"></a>
+					<% } %>
+					<% if(!sidebar.isTime){ %>
+					<a href="javascript:;" class="toggle toggle-off" id="isTime"></a>
+					<% } %>
+				</li>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10">类别</label>
+					<select class="select w250 p4 pb6 font12" id="category">
+						<optgroup label="侧边栏类别">
+							<% categoryEmun.forEach(function(item){ %>
+								<% if(item.id == sidebar.category){ %>
+									<option value="<%= item.id %>" selected><%= item.name %></option>
+								<% } %>
+								<% if(item.id != sidebar.category){ %>
+									<option value="<%= item.id %>"><%= item.name %></option>
+								<% } %>
+							<% }) %>
+						</optgroup>
+					</select>
+				</li>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10 mr4 fl">子列表</label>
+					<!-- tags -->
+					<div class="bfc tags w250 p6 radius4" id="list">
+						<% if(sidebar.list){ %>
+							<% sidebar.list.forEach(function(item){ %>
+								<span class="tag">
+									<span class="tags-text"><%= item %></span>
+									<i class="tags-remove fa fa-remove"></i>
+								</span>
+							<% }) %>
+						<% } %>
+						<div class="inline-block fl">
+							<input class="tags-input input w50 p4 font12" type="text">
+							<span class="tags-plus fa fa-plus"></span>
+						</div>
+					</div>
+				</li>
+				<li class="mt10">
+					<label class="inline-block w100 tr pr10"></label>
+					<a href="javascript:;" class="btn btn-primary" id="submit">确定</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<%- include include/js %>
+<script type="text/javascript">
+	// 提交
+	$('#submit').on('click', function(e){
+		var tagsArr = [];
+		$('#list').find('.tags-text').each(function(index, element){
+			tagsArr.push($(this).text());
+		});
+		var model = {
+			id: $('#title').data('id'),
+			title: $.trim($('#title').val()),
+			isTime: !$('#isTime').hasClass('toggle-off'),
+			icon: $.trim($('#icon').val()),
+			category: $('#category').val(),
+			list: tagsArr
+		}
+		if(model.title == ''){
+			util.promot({content: '请输入标题'});
+			return;
+		}
+		
+		var _data = {
+			data: model,
+			url: '/admin/sidebar/save',
+			success: function(data){
+				if(data.status == 1){
+					util.promot({
+						type: 'success', 
+						content: data.msg, 
+						callback: function(){
+							window.location.href = '/admin/sidebar/list'; 
+						}
+					});
+				}else{
+					util.promot({type: 'error', content: data.msg});
+				}
+			}
+		}
+		util.ajax(_data);
+	});
+</script>
+<%- include include/footer %>

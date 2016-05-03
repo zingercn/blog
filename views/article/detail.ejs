@@ -1,0 +1,94 @@
+<%- include ../include/header %>
+<%- include ../include/site-header %>
+
+<!-- main begin -->
+<div class="main container" id="main">
+	<div class="row">
+		<div class="col-1 col-sm-0"></div>
+		<div class="col-9 col-sm-12 pt15">
+			<article class="article">
+				<div class="post-info">
+					<h4 class="post-title tb"><%= article.title %></h4>
+					<p class="post-extra">
+						<time datetime="<%= article.meta.createAt %>">时间：<%= moment(article.meta.createAt).format('YYYY年MM月DD日') %></time>
+					</p>
+				</div>
+				<div class="post-content" id="post-content">
+					<%- article.content %>
+				</div>
+				<div class="mt20">
+					标签：
+					<% article.tags.forEach(function(str){ %>
+						<a href="/article/list?category=<%= category %>&amp;s=<%= str %>"><%= str %></a>&nbsp;
+					<% }) %>
+				</div>
+			</article>
+			<div class="comments">
+				<div>
+					<input type="hidden" value="<%= article._id %>" id="comment-article">
+					<input type="text" class="input font13 w250 p4 radius4 comment-nickname" id="comment-nickname" maxlength="50" placeholder="昵称"><br>
+					<textarea class="textarea textarea-block p4 mt8 radius4" id="comment-content" maxlength="500" placeholder="说些什么吧~"></textarea>
+					<a href="javascript:;" class="btn btn-primary mt8" id="submit">发布</a>
+				</div>
+				<% if(comments.length == 0){ %>
+				<p class="color-grey mt20">快来抢沙发吧~</p>
+				<% } %>
+				<% if(comments.length !== 0){ %>
+				<p class="color-grey mt20">全部评论：<span class="color-primary"><%= comments.length %></span>&nbsp;条</p>
+				<% } %>
+				<ul class="comments-list">
+					<% comments.forEach(function(item){ %>
+					<li>
+						<span class="comments-name"><%= item.nickname %></span><br>
+						<span class="comments-content"><%= item.content %></span>
+						<div class="comments-date"><%= moment(item.meta.createAt).format('YYYY年MM月DD日 HH:MM:SS') %></div>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</div>
+		<div class="col-2 col-sm-0 pt15">
+			<%- include ../include/site-sidebar %>
+		</div>
+	</div>
+</div>
+<!-- main end -->
+
+<%- include ../include/site-footer %>
+<%- include ../include/js %>
+<script type="text/javascript">
+	var nickname = localStorage['comment-nickname'];
+	if(!_.isUndefined(nickname)){
+		$('#comment-nickname').val(nickname);
+	}
+
+	$('#submit').on('click', function(e){
+		var model = {
+			article: $.trim($('#comment-article').val()),
+			nickname: $.trim($('#comment-nickname').val()),
+			content: $.trim($('#comment-content').val())
+		};
+		if(model.nickname == ''){
+			util.promot({type: 'error', content: '请输入昵称'});
+			return;
+		}
+		if(model.content == ''){
+			util.promot({type: 'error', content: '请输入内容'});
+			return;
+		}
+		localStorage['comment-nickname'] = model.nickname;
+		var _data = {
+			data: model,
+			url: '/comment/save',
+			success: function(data){
+				if(data.status == 1){
+					window.location.reload();
+				}else{
+					util.promot({type: 'error', content: data.msg});
+				}
+			}
+		};
+		util.ajax(_data);
+	});
+</script>
+<%- include ../include/footer %>

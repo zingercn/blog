@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="/icon.png" size="16x16">
+  <link rel="stylesheet" type="text/css" href="H5Player/player.css">
+</head>
+<style type="text/css">
+	.video{
+		display: none;
+	}
+	.btn{
+		padding: 10px 18px;
+		background-color: #34495e;
+		color: #fff;
+		font-weight: bold;
+		font-size: 16px;
+		text-decoration: none;
+		border-radius: 4px;
+	}
+	.btn:hover{
+		background-color: #4e6d8d;
+	}
+</style>
+<body>
+	<p style="text-align:center;margin-top:200px">
+		<a href="javascript:;" id="btn1" class="btn">视频1</a>
+		<a href="javascript:;" id="btn2" class="btn">视频2</a>
+	</p>
+	<video id="video1" class="video" src="1.mp4">
+	</video>
+	<video id="video2" class="video">
+		<source src="2.mp4" type="video/mp4">
+	</video>
+	<script type="text/javascript" src="H5Player/player.js"></script>
+	<script type="text/javascript">
+		document.querySelector("#btn1").addEventListener('click',function(e){
+			H5Player.play('#video1');
+		});
+		document.querySelector("#btn2").addEventListener('click',function(e){
+			H5Player.play('#video2');
+		});
+	</script>
+</body>
+</html>

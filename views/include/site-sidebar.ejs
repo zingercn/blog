@@ -1,0 +1,17 @@
+<div class="site-sidebar ml20">
+	<% sidebars.forEach(function(item){ %>
+		<h5><i class="fa <%= item.icon %>"></i>&nbsp;<%= item.title %></h5>
+		<ul class="mb20">
+		<% if(!item.isTime){ %>
+			<% item.list.forEach(function(str){ %>
+				<li><a href="/article/list?category=<%= category %>&s=<%= str %>"><i class="fa fa-angle-right font10"></i>&nbsp;<%= str %></a></li>
+			<% }) %>
+		<% } %>
+		<% if(item.isTime){ %>
+			<% item.list.forEach(function(str){ %>
+				<li><a href="/article/list/<%= str %>?category=<%= category %>"><i class="fa fa-angle-right font10"></i>&nbsp;<%= str %></a></li>
+			<% }) %>
+		<% } %>
+		</ul>
+	<% }) %>
+</div>

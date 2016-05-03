@@ -1,0 +1,45 @@
+<!-- site-header begin -->
+<div class="site-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-9 col-sm-5">
+				<div class="navbar">
+					<div class="menu" id="navbar-menu">
+		                <ul>
+		                    <li></li>
+		                    <li></li>
+		                    <li></li>
+		                </ul>
+		            </div>
+					<ul class="nav" id="nav-list" data-id="<%= nav %>">
+						<li></li>
+						<li>
+							<a href="/article/list?category=1">技术</a>
+						</li>
+						<li>
+							<a href="/article/list?category=2">生活</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-2 col-sm-6">
+				<div class="search-box">
+					<form method="get" action="/article/list">
+						<i class="search-icon fa fa-search color-white font16"></i>
+						<% if(typeof category !== 'undefined'){ %>
+						<input type="hidden" name="category" value="<%= category %>">
+						<% } %>
+						<% if(typeof s != 'undefined'){ %>
+							<input type="text" name="s" value="<%= s %>" class="input input-block search-text">
+						<% } %>
+						<% if(typeof s == 'undefined'){ %>
+							<input type="text" name="s" class="input input-block search-text">
+						<% } %>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- site-header end -->

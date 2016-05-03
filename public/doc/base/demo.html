@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="icon" type="image/png" href="/icon.png" size="16x16">
+	<link rel="stylesheet" type="text/css" href="assets/css/base.css">
+	<link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/lib/font-awesome/css/font-awesome.min.css">
+</head>
+<style type="text/css">
+	.demo-col{
+		padding: 10px;
+		border: 1px solid #ccc;
+	}
+</style>
+<body>
+	<div class="container p10">
+		<!-- 12栏栅格 -->
+		<div class="row mt10 mb10">
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+			<div class="col-3 col-md-4 col-sm-6 demo-col">col-3 col-md-4 col-sm-6</div>
+		</div>
+		<!-- bfc -->
+		<div class="mt10">
+			<div class="fl demo-col">fl</div>
+			<div class="bfc demo-col">bfc</div>
+		</div>
+		<!-- 链接 -->
+		<div class="mt10">
+			<a href="#">aaa</a>
+		</div>
+		<!-- 标题 -->
+		<div class="mt10">
+			<h1>h1</h1>
+			<h2>h2</h2>
+			<h3>h3</h3>
+			<h4>h4</h4>
+			<h5>h5</h5>
+			<h6>h6</h6>
+		</div>
+		<!-- 代码 -->
+		<pre>function test(){<br>  console.log('pre')<br>}</pre>
+		<!-- 按钮 -->
+		<div class="mt10">
+			<a href="#" class="btn btn-small">btn btn-small</a>
+			<a href="#" class="btn">btn</a>
+			<a href="#" class="btn btn-large font-bold">btn btn-large font-bold</a>
+		</div>
+		<div class="mt10">
+			<a href="#" class="btn btn-large btn-block btn-primary">
+				btn btn-large btn-block btn-primary
+			</a>
+		</div>
+		<div class="mt10">
+			<a href="#" class="btn btn-large btn-block disabled">
+				btn btn-large btn-block disabled
+			</a>
+		</div>
+		<!-- 按钮组 -->
+		<div class="mt10">
+			<div class="btn-group">
+				<a href="#" class="btn"><i class="fa fa-user"></i> btn-group</a>
+				<a href="#" class="btn active"><i class="fa fa-key"></i> btn-group</a>
+				<a href="#" class="btn"><i class="fa fa-envelope"></i> btn-group</a>
+			</div>
+		</div>
+		<div class="mt10">
+			<div class="btn-group btn-group-block">
+				<a href="#" class="btn btn-large btn-primary">btn-group-block</a>
+				<a href="#" class="btn btn-large btn-primary active">btn-group-block</a>
+				<a href="#" class="btn btn-large btn-primary">btn-group-block</a>
+			</div>
+		</div>
+		<!-- 输入框 -->
+		<div class="mt10">
+			<input type="text" class="input w250 p6 font12" placeholder="input p6 font12">
+			<div class="mt10">
+				<input type="text" class="input input-block error p8 radius6" value="error" placeholder="input input-block error p8 radius6">
+			</div>
+		</div>
+		<!-- 下拉框 -->
+		<div class="mt10">
+			<select class="select w250 p4 pb6 font12">
+				<optgroup label="select p6 font12">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</optgroup>
+			</select>
+			<div class="mt10"></div>
+			<select class="select select-block p8 pt6 radius6">
+				<optgroup label="select select-block p8 pt6 radius6">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</optgroup>
+			</select>
+		</div>
+		<!-- 文本域 -->
+		<div class="mt10">
+			<textarea class="textarea w250 p6 radius4"></textarea>
+			<div class="mt10"></div>
+			<textarea class="textarea textarea-block p6 radius4 font14"></textarea>
+		</div>
+		<!-- 多选框 -->
+		<div class="mt10">
+			<!-- checkbox -->
+			<label class="checkbox checked">
+				<i class="icon"></i>
+				<input type="checkbox" value checked>checkbox
+			</label>
+			<label class="checkbox ml10">
+				<i class="icon"></i>
+				<input type="checkbox" value>checkbox
+			</label>
+		</div>
+		<!-- 单选框 -->
+		<div class="mt10">
+			<label class="radio checked">
+				<i class="icon"></i>
+				<input type="radio" name="radio" value checked>radio1
+			</label>
+			<label class="radio ml10">
+				<i class="icon"></i>
+				<input type="radio" name="radio" value>radio2
+			</label>
+			<label class="radio ml10">
+				<i class="icon"></i>
+				<input type="radio" name="radio" value>radio3
+			</label>
+		</div>
+		<!-- toggle -->
+		<div class="mt10">
+			<a href="javascript:;" class="toggle"></a>
+			<a href="javascript:;" class="toggle toggle-off"></a>
+		</div>
+		<!-- tags -->
+		<div class="mt10">
+			<div class="tags w250 p6 radius4">
+				<span class="tag">
+					<span class="tags-text">tag1</span>
+					<i class="tags-remove fa fa-remove"></i>
+				</span>
+				<span class="tag">
+					<span class="tags-text">tag2</span>
+					<i class="tags-remove fa fa-remove"></i>
+				</span>
+				<div class="inline-block fl">
+					<input class="tags-input input w50 p4 font12" type="text">
+					<span class="tags-plus fa fa-plus"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 分页 -->
+		<div class="mt10">
+			<div class="pagination pagination-small">
+				<ul>
+					<li class="disabled"><a href="#">首页</a></li>
+					<li class="disabled"><a href="#">上一页</a></li>
+					<li class="active"><a href="#">pagination-small</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">下一页</a></li>
+					<li><a href="#">末页</a></li>
+				</ul>
+			</div>
+			<div class="pagination">
+				<ul>
+					<li class="disabled"><a href="#">首页</a></li>
+					<li class="disabled"><a href="#">上一页</a></li>
+					<li class="active"><a href="#">pagination</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">下一页</a></li>
+					<li><a href="#">末页</a></li>
+				</ul>
+			</div>
+			<div class="pagination pagination-large">
+				<ul>
+					<li class="disabled"><a href="#">首页</a></li>
+					<li class="disabled"><a href="#">上一页</a></li>
+					<li class="active"><a href="#">pagination-large</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">下一页</a></li>
+					<li><a href="#">末页</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 导航 -->
+		<div class="mt10">
+			<div class="navbar">
+				<ul class="nav">
+					<li>
+						<a href="#">nav1</a>
+					</li>
+					<li class="active">
+						<a href="#">nav2</a>
+						<ul class="menu">
+							<li><a href="#">item1</a></li>
+							<li><a href="#">item2</a></li>
+							<li><a href="#">item3</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">nav3</a>
+						<ul class="menu menu-cling">
+							<li><a href="#">item1</a></li>
+							<li><a href="#">item2</a></li>
+							<li><a href="#">item3</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 表格 -->
+		<div class="mt10">
+			<table class="table">
+				<thead>
+					<tr>
+						<th width="40px;">#</th>
+						<th>th</th>
+						<th>th</th>
+						<th>th</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th width="40px;">1</th>
+						<td>td</td>
+						<td>td</td>
+						<td>td</td>
+					</tr>
+					<tr>
+						<th width="40px;">2</th>
+						<td>td</td>
+						<td>td</td>
+						<td>td</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="mt10">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>th</th>
+						<th>th</th>
+						<th>th</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>td</td>
+						<td>td</td>
+						<td>td</td>
+					</tr>
+					<tr>
+						<td>td</td>
+						<td>td</td>
+						<td>td</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 面包屑 -->
+		<div class="mt10">
+			<ul class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">二级页面</a></li>
+				<li class="active">详情页</li>
+			</ul>
+		</div>
+		<!-- 面板 -->
+		<div class="mt10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>head</h4>
+				</div>
+				<div class="panel-body">内容</div>
+			</div>
+		</div>
+		<!-- 弹出层 -->
+		<div class="mt10">
+			<a href="javascript:;" class="btn dialog-show" data-dialog="dialog1">dialog</a>
+			<a href="javascript:;" class="btn dialog-show" data-dialog="dialog2">dialog-small</a>
+			<a href="javascript:;" class="btn dialog-show" data-dialog="dialog3">dialog-large</a>
+		</div>
+		<div class="dialog" id="dialog1">
+			<div class="dialog-view">
+				<div class="dialog-head">
+					<span class="dialog-title">通知</span>
+					<span class="dialog-close js-dialog-hide"><i class="fa fa-remove"></i></span>
+				</div>
+				<div class="dialog-content">这是一条通知。</div>
+				<div class="dialog-footer tc">
+					<a href="javascript:;" class="btn btn-primary">确定</a>
+					<a href="javascript:;" class="btn btn-cancel js-dialog-hide">取消</a>
+				</div>
+			</div>
+		</div>
+		<div class="dialog dialog-small" id="dialog2">
+			<div class="dialog-view">
+				<div class="dialog-head">
+					<span class="dialog-title">通知</span>
+					<span class="dialog-close js-dialog-hide"><i class="fa fa-remove"></i></span>
+				</div>
+				<div class="dialog-content">这是一条通知。</div>
+				<div class="dialog-footer tc">
+					<a href="javascript:;" class="btn btn-primary js-dialog-hide">确定</a>
+					<a href="javascript:;" class="btn btn-cancel js-dialog-hide">取消</a>
+				</div>
+			</div>
+		</div>
+		<div class="dialog dialog-large" id="dialog3">
+			<div class="dialog-view">
+				<div class="dialog-head">
+					<span class="dialog-title">通知</span>
+					<span class="dialog-close js-dialog-hide"><i class="fa fa-remove"></i></span>
+				</div>
+				<div class="dialog-content">这是一条通知。</div>
+				<div class="dialog-footer tc">
+					<a href="javascript:;" class="btn btn-primary js-dialog-hide">确定</a>
+					<a href="javascript:;" class="btn btn-cancel js-dialog-hide">取消</a>
+				</div>
+			</div>
+		</div>
+		<!-- 日期选择器 -->
+		<div class="mt10">
+			<input class="input w250 p6 font12 radius4" type="text" id="datetimepicker"/>
+			<input class="input w250 p6 font12 radius4" type="text" id="datetimepicker2"/>
+		</div>
+		<!-- 文件上传 -->
+		<div class="mt10">
+			<input type="text" class="input p6 font12" style="width:165px;" id="file-text" disabled>
+			<a href="javascript:;" class="btn btn-primary" id="file-btn">选择文件</a>
+			<input class="hide" id="file" type="file"/>
+		</div>
+
+		<!-- util组件 begin -->
+		<!-- promot -->
+		<div class="mt10">
+			<a href="javascript:;" id="promot1" class="btn">promot</a>
+			<a href="javascript:;" id="promot2" class="btn">promot primary</a>
+			<a href="javascript:;" id="promot3" class="btn">promot success</a>
+			<a href="javascript:;" id="promot4" class="btn">promot error</a>
+			<div class="util-promot"><div class="util-promot-area">promot</div></div>
+		</div>
+		<!-- confirm -->
+		<div class="mt10">
+			<a href="javascript:;" id="confirm1" class="btn">confirm</a>
+			<a href="javascript:;" id="confirm2" class="btn">confirm primary</a>
+			<a href="javascript:;" id="confirm3" class="btn">confirm delete</a>
+			<div class="util-confirm">
+				<div class="util-confirm-view">
+					<div class="util-confirm-head">
+						<span class="util-confirm-title">通知</span>
+						<span class="util-confirm-close"><i class="fa fa-remove"></i></span>
+					</div>
+					<div class="util-confirm-content">这是一条通知。</div>
+					<div class="util-confirm-footer tc">
+						<a href="javascript:;" class="btn btn-ok">确定</a>
+						<a href="javascript:;" class="btn btn-cancel">取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ajax 全屏等待 -->
+		<div class="util-ajax-bg"><i class="icon"></i></div>
+		<!-- 兼容ie8 -->
+		<!-- <div class="util-ajax-bg"></div> -->
+		<!-- util组件 end -->
+		
+		<!-- 回到顶部 -->
+		<div class="gotop" id="gotop"><i class="fa fa-angle-up"></i></div>
+	</div>
+	<script type="text/javascript" src="assets/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/lib/underscore/underscore.min.js"></script>
+	<script type="text/javascript" src="assets/lib/datetimepicker/datetimepicker.min.js"></script>
+	<script type="text/javascript" src="assets/js/base.js"></script>
+	<script type="text/javascript" src="assets/js/util.js"></script>
+	<script type="text/javascript">
+		$('#datetimepicker').datetimepicker({
+			timepicker:false,
+			lang:'ch',
+			format:'Y-m-d'
+		});
+		$('#datetimepicker2').datetimepicker({
+			lang:'ch',
+			format:'Y-m-d H:i',
+			step:10
+		});
+
+		util.fileupload($('#file'), $('#file-btn'), $('#file-text'), '/');
+		
+		
+		$('#promot1').on('click', function(e){
+			var promotOption = {
+				content: 'promot1',
+				time: 2000,
+				callback: function(){
+					console.log(this.content);
+				}
+			}
+			util.promot(promotOption);
+		});
+		$('#promot2').on('click', function(e){
+			var promotOption = {
+				content: 'promot2',
+				type: 'primary',
+				callback: function(){
+					console.log(this.content);
+				}
+			};
+			util.promot(promotOption);
+		});
+		$('#promot3').on('click', function(e){
+			var promotOption = {
+				content: 'promot3',
+				type: 'success',
+				callback: function(){
+					console.log(this.content);
+				}
+			};
+			util.promot(promotOption);
+		});
+		$('#promot4').on('click', function(e){
+			var promotOption = {
+				content: 'promot4',
+				type: 'error',
+				callback: function(){
+					console.log(this.content);
+				}
+			};
+			util.promot(promotOption);
+		});
+
+		// confirm
+		$('#confirm1').on('click', function(e){
+			util.confirm({
+				callback: function(){
+					console.log('confirm');
+				}
+			});
+		});
+		$('#confirm2').on('click', function(e){
+			util.confirm({
+				type: 'primary',
+				callback: function(){
+					console.log('confirm2');
+				}
+			});
+		});
+		$('#confirm3').on('click', function(e){
+			util.confirm({
+				content: '确定删除？',
+				type: 'delete',
+				callback: function(){
+					console.log('confirm3');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

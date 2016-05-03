@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/assets/css/base.css">
+</head>
+<style type="text/css">
+.game-main{
+	width: 600px;
+	height: 400px;
+	padding: 2px;
+	background-color: #fff;
+}
+.game-main .coin{
+	position: relative;
+	left: 50%;
+	top: 60%;
+	width: 60px;
+	height: 60px;
+	margin-left: -30px;
+}
+.game-main .coin-animation{
+	-webkit-animation: move 3s ease-in-out;
+}
+.game-main .coin .coin-bg1{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #ccc url(img1.png) center no-repeat;
+	background-size: auto 90%;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.8);
+}
+.game-main .coin .coin-bg2{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #ccc url(img2.png) center no-repeat;
+	background-size: auto 90%;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.8);
+}
+.game-form{
+	position: fixed;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+.game-main .coin-bg1-animation1{
+	-webkit-animation: rotate1-1 .5s linear both;
+	-webkit-animation-iteration-count: 6;
+}
+.game-main .coin-bg1-animation2{
+	-webkit-animation: rotate1-2 .75s linear both;
+	-webkit-animation-iteration-count: 4;
+}
+.game-main .coin-bg2-animation1{
+	-webkit-animation: rotate2-1 .5s linear both;
+	-webkit-animation-iteration-count: 6;
+}
+.game-main .coin-bg2-animation2{
+	-webkit-animation: rotate2-2 .75s linear both;
+	-webkit-animation-iteration-count: 4;
+}
+.game-main .rotateX180{
+	-webkit-transform: rotateX(180deg);
+	z-index: 1;
+}
+.game-main .result{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.8);
+	z-index: 9;
+}
+.game-main .result{
+	text-align: center;
+	color: #fff;
+}
+.game-main .result .close{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+}
+.game-main .result .img{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+}
+.game-main .result p{
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+}
+@-webkit-keyframes rotate1-1{
+	25%{
+		-webkit-transform: rotateX(90deg);
+	}
+	50%{
+		-webkit-transform: rotateX(180deg);
+	}
+	75%{
+		-webkit-transform: rotateX(270deg);
+	}
+	100%{
+		-webkit-transform: rotateX(360deg);
+	}
+}
+@-webkit-keyframes rotate1-2{
+	16.7%{
+		-webkit-transform: rotateX(90deg);
+		z-index: 1;
+	}
+	33.4%{
+		-webkit-transform: rotateX(180deg);
+		z-index: 1;
+	}
+	50.1%{
+		-webkit-transform: rotateX(270deg);
+		z-index: 1;
+	}
+	66.8%{
+		-webkit-transform: rotateX(360deg);
+		z-index: -1;
+	}
+	83.5%{
+		-webkit-transform: rotateX(450deg);
+		z-index: 1;
+	}
+	100%{
+		-webkit-transform: rotateX(540deg);
+		z-index: 1;
+	}
+}
+@-webkit-keyframes rotate2-2{
+	16.7%{
+		-webkit-transform: rotateX(90deg);
+		z-index: 1;
+	}
+	33.4%{
+		-webkit-transform: rotateX(180deg);
+		z-index: -1;
+	}
+	50.1%{
+		-webkit-transform: rotateX(270deg);
+		z-index: -1;
+	}
+	66.8%{
+		-webkit-transform: rotateX(360deg);
+		z-index: 1;
+	}
+	83.5%{
+		-webkit-transform: rotateX(450deg);
+		z-index: -1;
+	}
+	100%{
+		-webkit-transform: rotateX(540deg);
+		z-index: -1;
+	}
+}
+@-webkit-keyframes rotate2-1{
+	25%{
+		-webkit-transform: rotateX(90deg);
+	}
+	50%{
+		-webkit-transform: rotateX(180deg);
+		z-index: -1;
+	}
+	75%{
+		-webkit-transform: rotateX(270deg);
+	}
+	100%{
+		-webkit-transform: rotateX(360deg);
+	}
+}
+@-webkit-keyframes move{
+	50%{
+		-webkit-transform: translateY(-200px);
+	}
+	100%{
+		-webkit-transform: translateY(0);
+
+	}
+}
+
+</style>
+<body>
+	<div class="game-main">
+		<div class="coin" id="coin">
+			<div class="coin-bg1" id="coin-bg1"></div>
+			<div class="coin-bg2" id="coin-bg2"></div>
+		</div>
+		<div class="game-form">
+			吾皇金正恩：<input type="text" class="input p4 pt2 pb2 mr10" id="input-zhengeng">
+			美帝奥巴马：<input type="text" class="input p4 pt2 pb2" id="input-bama">
+			<a href="javascript:;" class="btn btn-primary ml10" id="submit-btn">抛</a>
+		</div>
+		<div class="result" id="result">
+			<p id="input-coin"></p>
+			<img id="result-img" class="img" width="300">
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+		(function () {
+
+			
+
+			$('#submit-btn').on('click', function(e){
+				var $this = $(this);
+				
+				if($this.hasClass('js-lock')){
+					return;
+				}
+
+				$this.addClass('js-lock');
+				var flag = Math.random() < 0.5 ? true : false;
+				console.log(flag);
+				$('#coin-bg1').removeClass('rotateX180');
+				if(flag){//正
+					$('#coin').addClass('coin-animation');
+					$('#coin-bg1').addClass('coin-bg1-animation1');
+					$('#coin-bg2').addClass('coin-bg2-animation1');
+					setTimeout(function(){
+						$('#coin').removeClass('coin-animation');
+						$('#coin-bg1').removeClass('coin-bg1-animation1');
+						$('#coin-bg2').removeClass('coin-bg2-animation1');
+						$this.removeClass('js-lock');
+
+						$('#result').fadeIn(200);
+						$('#result-img').attr('src','img4.png');
+						$('#input-coin').text($('#input-zhengeng').val());
+					},3000);
+				}
+				else{//反
+					$('#coin').addClass('coin-animation');
+					$('#coin-bg1').addClass('coin-bg1-animation2');
+					$('#coin-bg2').addClass('coin-bg2-animation2');
+					setTimeout(function(){
+						$('#coin').removeClass('coin-animation');
+						$('#coin-bg1').addClass('rotateX180').removeClass('coin-bg1-animation2');
+						$('#coin-bg2').removeClass('coin-bg2-animation2');
+						$this.removeClass('js-lock');
+
+						$('#result').fadeIn(200);
+						$('#result-img').attr('src','img3.png');
+						$('#input-coin').text($('#input-bama').val());
+					},3000);
+				}
+
+			});
+
+			$('#result').on('click', function(e){
+				$(this).fadeOut(200);
+			});
+		})();
+	</script>
+</body>
+</html>

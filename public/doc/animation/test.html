@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="animate.css">
+</head>
+<style type="text/css">
+.div1{
+	border: 4px solid #000;
+	width:100px;
+	height: 100px;
+	border-left-color: #ccc;
+	border-radius: 50%;
+	-webkit-animation-name: rotate;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-fill-mode: both;
+}
+@-webkit-keyframes rotate{
+	to{
+		-webkit-transform: rotate(360deg);
+	}
+}
+.div2{
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+	transition: all 1s;
+}
+.div2:hover{
+	-webkit-transform: rotateY(130deg);
+	
+}
+</style>
+<body>
+<div class="div2">d</div>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

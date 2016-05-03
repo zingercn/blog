@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>简历</title>
+	<link rel="icon" type="image/png" href="/icon.png" size="16x16">
+	<link rel="stylesheet" type="text/css" href="/assets/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/assets/lib/font-awesome/css/font-awesome.min.css">
+</head>
+<style type="text/css">
+	body{
+		background-color: #303641;
+	}
+	.resume-box{
+		width: 320px;
+		height: 500px;
+		margin: 0 auto;
+		margin-top: 20px;
+		overflow: hidden;
+		cursor: -webkit-grab;
+	}
+	.resume-box:active{
+		cursor: -webkit-grabbing;
+	}
+	/*缓慢滚动*/
+	.keep{
+		-webkit-transition:-webkit-transform .3s linear;
+		transition:transform .3s linear;
+	}
+	/*向上引导*/
+	.up{
+		position: absolute;
+		display: block;
+		left:0;
+		right:0;
+		text-align: center;
+		font-size: 40px;
+		bottom:20px;
+		z-index: 9999;
+		-webkit-animation:up 1.5s infinite ease-in-out both;
+		animation:up 1.5s infinite ease-in-out both;
+	}
+	.h-wrap{
+		position: relative;
+		width:100%;
+		height:100%;
+		display:none;
+	}
+	.wrapper{
+		width:100%;
+		height:100%;
+		position:relative;
+	}
+	.wrapper section{
+		position: relative;
+		width:100%;
+		height:100%;
+		/*background: url(images/bg.png) 50% 50% no-repeat;*/
+		background-size: 100% 100%;
+		font-size: 20px;
+	}
+	.wrapper .sec1{
+		background-color: #f2f2f2;
+	}
+	.wrapper .sec2{
+		background-color: #f2f2f2;
+	}
+	.wrapper .sec3{
+		background-color: #f2f2f2;
+	}
+	.wrapper .sec4{
+		background-color: #f2f2f2;
+	}
+	.sec1 .star-moon{
+		position: absolute;
+		top: 30px;
+		left: 50%;
+		width: 300px;
+		height: 157px;
+		margin-left: -150px;
+		background: url(images/img1.png) no-repeat;
+		-webkit-transform-origin:center 127px;
+		-webkit-transform:rotate(-20deg);
+		-webkit-animation:sway 2s infinite alternate ease-in-out;
+	}
+
+	.sec1 .bottom{
+		position: absolute;
+		top: 156px;
+		left: 50%;
+		width: 132px;
+		height: 225px;
+		margin-left: -66px;
+		background: url(images/img2.png) no-repeat;
+	}
+
+	.sec2 .dog{
+		position: absolute;
+		top: 340px;
+		left: 20px;
+		width: 70px;
+		height: 70px;
+		background: url(images/img3.jpg) center no-repeat;
+		background-size: cover;
+		border: 3px solid #ccc;
+		border-radius: 50%;
+		-webkit-animation: heartbeat .3s ease both;
+		animation: heartbeat .3s ease both;
+	}
+
+	.sec2 .speaking{
+		position: absolute;
+		top: 40px;
+		right: 10px;
+		width: 280px;
+		height: 350px;
+		background: url(images/img4.png) center no-repeat;
+		background-size: 100%;
+		-webkit-transform-origin: bottom left;
+		-webkit-animation: scaleBig .3s .3s both;
+		animation: scaleBig .3s .3s both;
+		/*border: 3px solid #ccc;*/
+		/*border-radius: 4px;*/
+	}
+	.sec2 .speaking p{
+		margin-top: 50px;
+		padding: 10px;
+		text-align: center;
+	}
+	.sec3 .list{
+		position: absolute;
+		top: 15%;
+		width: 100%;
+		height: 100%;
+	}
+	.sec3 .list .item{
+		width: 290px;
+		height: 60px;
+		margin: 0 auto;
+		margin-bottom: 12px;
+		background-color: #ccc;
+	}
+	.sec3 .list .item .category{
+		float: left;
+		width: 60px;
+		height: 60px;
+		line-height: 56px;
+		text-align: center;
+	}
+	.sec3 .list .item p{
+		float: right;
+		width: 200px;
+		height: 60px;
+		font-size: 14px;
+		cursor: default;
+	}
+	.sec3 .list .item:nth-child(1){
+		background: url(images/img5.png) 50% 50% no-repeat;
+		animation:fadeInRightBig .2s ease both;
+		-webkit-animation:fadeInRightBig .2s ease both;
+	}
+	.sec3 .list .item:nth-child(2){
+		background: url(images/img5.png) 50% 50% no-repeat;
+		-webkit-animation:fadeInRightBig .2s .2s ease both;
+		animation:fadeInRightBig .2s .2s ease both;
+	}
+	.sec3 .list .item:nth-child(3){
+		background: url(images/img5.png) 50% 50% no-repeat;
+		-webkit-animation:fadeInRightBig .2s .4s ease both;
+		animation:fadeInRightBig .2s .4s ease both;
+	}
+	.sec3 .list .item:nth-child(4){
+		background: url(images/img5.png) 50% 50% no-repeat;
+		-webkit-animation:fadeInRightBig .2s .6s ease both;
+		animation:fadeInRightBig .2s .6s ease both;
+	}
+	.sec3 .list .item:nth-child(5){
+		background: url(images/img5.png) 50% 50% no-repeat;
+		-webkit-animation:fadeInRightBig .2s .8s ease both;
+		animation:fadeInRightBig .2s .8s ease both;
+	}
+	.sec4 .list{
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		width: 240px;
+		margin-left: -120px;
+		padding: 10px;
+		background-color: #fff;
+		border: 3px solid #ccc;
+		border-radius: 6px;
+		font-size: 16px;
+		cursor: default;
+		-webkit-animation: fadeInScale .3s ease-in both;
+		animation: fadeInScale .3s ease-in both;
+	}
+	.sec4 .list .item{
+		padding: 10px 0;
+	}
+
+	.animation-heartbeat{
+		-webkit-animation:heartbeat .5s ease-in both;
+		animation:heartbeat .5s ease-in both;
+	}
+	.animation-fadeInRightBig{
+		-webkit-animation:fadeInRightBig .2s ease both;
+		animation:fadeInRightBig .2s ease both;
+	}
+	.animation-fadeIn{
+		-webkit-animation: fadeIn .4s ease-in both;
+		animation: fadeIn .4s ease-in both;
+	}
+	.animation-fadeInScale{
+		-webkit-animation: fadeInScale .4s 1.4s ease-in both;
+		animation: fadeInScale .4s 1.4s ease-in both;
+	}
+	/*----------------------------动画---------------------------*/
+	/*引导向上滑动*/
+	@-webkit-keyframes up{
+		0%{
+			opacity:0;
+			-webkit-transform:translate(0,5px);
+		}
+		50%{
+			opacity: 1;
+			-webkit-transform:translate(0,-10px);
+		}
+		100%{
+			opacity: 0;
+			-webkit-transform:translate(0,-20px);
+		}
+	}
+	@keyframes up{
+		0%{
+			opacity:0;
+			transform:translate(0,5px);
+		}
+		50%{
+			opacity: 1;
+			transform:translate(0,-10px);
+		}
+		100%{
+			opacity: 0;
+			transform:translate(0,-20px);
+		}
+	}
+	/*心跳*/
+	@-webkit-keyframes heartbeat{
+		0%{
+			-webkit-transform:scale(0,0);
+			opacity:0;
+		}
+		25%{
+			-webkit-transform:scale(1.3,1.3); 
+			opacity:1;
+		}
+		50%{
+			-webkit-transform:scale(.9,.9);
+		}
+		75%{
+			-webkit-transform:scale(1.2,1.2);
+		}
+		100%{
+			-webkit-transform:scale(1,1);
+		}
+	}
+	@keyframes heartbeat{
+		0%{
+			transform:scale(0,0);
+			opacity:0;
+		}
+		25%{
+			transform:scale(1.3,1.3);
+			opacity:1;
+		}
+		50%{
+			transform:scale(.9,.9);
+		}
+		75%{
+			transform:scale(1.2,1.2);
+		}
+		100%{
+			transform:scale(1,1);
+		}
+	}
+	/*右边冲入*/
+	@-webkit-keyframes fadeInRightBig{
+		0%{
+			opacity:0;
+			-webkit-transform:translateX(1000px)
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:translateX(0)
+		}
+	}
+	@keyframes fadeInRightBig{
+		0%{
+			opacity:0;
+			transform:translateX(1000px)
+		}
+		100%{
+			opacity:1;
+			transform:translateX(0)
+		}
+	}
+	/*左边冲入*/
+	@-webkit-keyframes fadeInLeftBig{
+		0%{
+			opacity:0;
+			-webkit-transform:translateX(-1000px)
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:translateX(0)
+		}
+	}
+	@keyframes fadeInLeftBig{
+		0%{
+			opacity:0;
+			transform:translateX(-1000px)
+		}
+		100%{
+			opacity:1;
+			transform:translateX(0)
+		}
+	}
+	/*上边冲入*/
+	@-webkit-keyframes fadeInTopBig{
+		0%{
+			opacity:0;
+			-webkit-transform:translateY(-1000px)
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:translateY(0)
+		}
+	}
+	@keyframes fadeInTopBig{
+		0%{
+			opacity:0;
+			transform:translateY(1000px)
+		}
+		100%{
+			opacity:1;
+			transform:translateY(0)
+		}
+	}
+	/*淡入*/
+	@-webkit-keyframes fadeIn {
+		0%{
+			opacity:0
+		}
+		100%{
+			opacity:1
+		}
+	}
+	@keyframes fadeIn {
+		0%{
+			opacity:0
+		}
+		100%{
+			opacity:1
+		}
+	}
+	/*缩小淡入*/
+	@-webkit-keyframes fadeInScale {
+		0%{
+			opacity:0;
+			-webkit-transform:scale(2);
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:scale(1);
+		}
+	}
+	@keyframes fadeInScale {
+		0%{
+			opacity:0;
+			transform:scale(2);
+		}
+		100%{
+			opacity:1;
+			transform:scale(1);
+		}
+	}
+	/*从中间冲出*/
+	@-webkit-keyframes scaleBig{
+		0%{
+			opacity:0;
+			-webkit-transform:scale(.1);
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:scale(1);
+		}
+	}
+	@keyframes scaleBig{
+		0%{
+			opacity:0;
+			transform:scale(.1);
+		}
+		100%{
+			opacity:1;
+			transform:scale(1);
+		}
+	}
+	/*跷跷板*/
+	@-webkit-keyframes sway{
+		100%{
+			-webkit-transform:rotate(20deg);
+		}
+	}
+</style>
+<body>
+	<div class="resume-box" id="resume-box">
+		<div class="wrapper">
+			<section class="sec1">
+				<div class="h-wrap">
+					<div class="star-moon"></div>
+					<div class="bottom"></div>
+					<i class="up fa fa-angle-up"></i>
+				</div>
+			</section>
+			<section class="sec2">
+				<div class="h-wrap">
+					<h3 class="p10">1、自我评价</h3>
+					<div class="dog"></div>
+					<div class="speaking">
+						<p>文艺码农狗一只<br>热爱前端，热爱生活<br>爱好音乐，电影，dota<br>相信代码改变世界<br>目标是成为一只产品工程狗<br>~^o^~</p>
+					</div>
+					<i class="up fa fa-angle-up"></i>
+				</div>
+			</section>
+			<section class="sec3">
+				<div class="h-wrap">
+					<h3 class="p10">2、项目经验</h3>
+					<ul class="list">
+						<li class="item">
+							<span class="category">node</span>
+							<p>
+								<a class="fl p4 pt8" href="/" target="_blank">express+mongodb搭的博客</a>
+								<a  class="fl pl4 pl4" href="https://bitbucket.org/471089443/blog/src" target="_blank">源码地址</a>
+							</p>
+						</li>
+						<li class="item">
+							<span class="category">js</span>
+							<p>
+								<a class="fl p4 pt8 pb8 mt10" href="/doc/H5Player/demo.html" target="_blank">原生js封装的html5播放器插件</a>
+							</p>
+						</li>
+						<li class="item">
+							<span class="category">css</span>
+							<p>
+								<a class="fl p4 pt8 pb8" href="/doc/base/demo.html" target="_blank">结合bootstrap、acss、reset写的一个base.css</a>
+							</p>
+						</li>
+						<li class="item">
+							<span class="category">js</span>
+							<p>
+								<a class="fl p4 pt8 pb8 mt10" href="http://www.newband.com" target="_blank">jquery写的牛班官网展示页</a>
+							</p>
+						</li>
+						<li class="item">
+							<span class="category">other</span>
+							<p>
+								<a class="fl p4 pt8 mt10 w200" href="http://m.ophunter.com/" target="_blank">鸥扑招聘web app</a>
+							</p>
+						</li>
+					</ul>
+					<i class="up fa fa-angle-up"></i>
+				</div>
+			</section>
+			<section class="sec4">
+				<div class="h-wrap">
+					<h3 class="p10">3、个人信息</h3>
+					<div>
+						<ul class="list">
+							<li class="item"><i class="fa fa-user mr6"></i>高杰 1991 1年工作经验</li>
+							<li class="item"><i class="fa fa-phone mr6"></i>15651733393</li>
+							<li class="item"><i class="fa fa-envelope mr6"></i>471089443@qq.com</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+		;(function(){
+			var $wrapper = $(".wrapper"),
+				$section = $wrapper.children("section");
+
+			var module = {
+				touch_y: 0,//初始位置
+				move_y: 0,//当前手指移动距离
+				mouse_state: "stop",//移动状态
+				translate: 0,//移动总距离
+				position: 0,//当前页数
+				height: 0,//设备高度
+				mousedown: "mousedown",
+				mouseup: "mouseup",
+				mousemove: "mousemove"
+			};
+			$.extend(module,{
+				init: function(){
+					//计算屏幕高度
+					module.height = $('#resume-box').height();
+					$section.css({
+						height: module.height + "px"
+					});
+					$wrapper.attr("position",module.position);
+					$section.children('.h-wrap').hide().eq(module.position).show();
+				},
+				initEvent: function(){
+					//滑动事件
+					$wrapper.on(module.mousedown,function(e){
+						module.mouse_state = "start";
+						module.move_y = 0;
+						module.touch_y = e.pageY;
+					});
+					$wrapper.on(module.mousemove,function(e){
+						e.preventDefault();
+						if("start" !== module.mouse_state && "move" !== module.mouse_state) {
+							return;
+						}
+						module.mouse_state = "move";
+						var moveX = 0;
+						var moveY = 0;
+						moveY = e.pageY - module.touch_y;
+						module.move_y = moveY;
+						moveY += module.translate;
+						$wrapper.css(module.transform_css("translate3d(0,"+moveY+"px,0)"));
+					});
+					$wrapper.on(module.mouseup,function(e){
+						module.mouse_state = "stop";
+						if(Math.abs(module.move_y) <= 5) return;
+						if(module.move_y>5 && module.position>0){
+							module.translate += module.height;
+							module.position --;
+							$wrapper.attr("position",module.position);
+						}else if(module.move_y<-5 && module.position<3){
+							module.translate -= module.height;
+							module.position ++;
+							$wrapper.attr("position",module.position);
+						}
+						$wrapper.addClass("keep").css(module.transform_css("translate3d(0,"+module.translate+"px,0)"));
+
+						setTimeout(function() {
+							$wrapper.removeClass("keep");
+							$section.children('.h-wrap').hide().eq(module.position).show();
+						},300);
+					});
+				},
+				transform_css: function(t) {
+					var e = document.createElement("div");
+						return e.style.cssText = "-webkit-transition:all .1s; transition:all .1s;",
+					(e.style.webkitTransition ?
+					function(t) {
+						return {
+							"-webkit-transform": t
+						};
+					}: function(t) {
+						return {
+							transform: t
+						};
+					})(t);
+				}
+			});
+			$(document).ready(function(){
+				module.init();
+				module.initEvent();
+			});
+		})();
+	</script>
+</body>
+</html>

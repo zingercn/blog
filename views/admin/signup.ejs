@@ -1,0 +1,54 @@
+<%- include include/head-begin %>
+<%- include include/css %>
+<%- include include/head-end %>
+<div class="signup">
+	<div class="wrapper radius6 tr">
+		<ul>
+			<li>
+				<i class="fa fa-user mr10"></i><input class="input w250 p6 radius4 font12" id="name" type="text" placeholder="用户名">
+			</li>
+			<li class="mt10">
+				<i class="fa fa-key mr8"></i><input class="input w250 p6 radius4 font12" id="password" type="password" placeholder="密码">
+			</li>
+		</ul>
+		<a href="javascript:;" class="btn btn-primary mt10" id="submit">注册</a>
+		<a href="/admin/signin" class="inline-block mt10 p6">登录</a>
+	</div>
+</div>
+<%- include include/js %>
+<script type="text/javascript">
+	$('#submit').on('click', function(e){
+		var model = {
+			name: $.trim($('#name').val()),
+			password: $.trim($('#password').val())
+		};
+		if(model.name == ''){
+			util.promot({type: 'error', content: '请输入用户名'});
+			return;
+		}
+		if(model.password == ''){
+			util.promot({type: 'error', content: '请输入密码'});
+			return;
+		}
+		var _data = {
+			data: model,
+			url: '/admin/user/signup',
+			success: function(data){
+				if(data.status == 1){
+					window.location.href = '/admin';
+				}else{
+					util.promot({type: 'error', content: data.msg});
+				}
+			}
+		};
+		util.ajax(_data);
+	});
+	
+	$(document).on('keydown', function(e){
+		//回车
+		if(e.keyCode == 13){
+			$('#submit').trigger('click');
+		}
+	});
+</script>
+<%- include include/footer %>

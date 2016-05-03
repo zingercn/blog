@@ -1,0 +1,96 @@
+<%- include include/header %>
+<%- include include/site-header %>
+
+<!-- main begin -->
+<div class="main container">
+	<div class="row">
+		<div class="col-2">
+			<div class="home-left tr">
+				<div class="home-menu">
+					<ul class="home-menu-list">
+					</ul>
+				</div>
+				<div class="home-animation-btn home-menu-btn" title="动画"><i class="fa fa-film"></i></div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="home-stage">
+				<iframe id="stage-iframe" src="/doc/game/coin/index.html" scrolling="no"></iframe>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="home-right">
+				<div class="home-menu">
+					<ul class="home-menu-list">
+						<li class="home-menu-item" title="抛硬币" data-src="/doc/game/coin/index.html">抛</li>
+					</ul>
+				</div>
+				<div class="home-game-btn home-menu-btn" title="游戏"><i class="fa fa-gamepad"></i></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- main end -->
+
+<%- include include/site-footer %>
+<%- include include/js %>
+<script type="text/javascript">
+	(function(){
+
+		$('.home-menu-btn').on('click', function(e){
+			e.preventDefault();
+
+			var $this = $(this),
+				$menuList = $this.parent().find('.home-menu-list'), // 动画效果的父容器
+				$menuItem = $menuList.find('.home-menu-item'); // 父容器中的所有子菜单
+			
+			if(!$menuList.hasClass('active') && !$this.hasClass('js-active')){
+
+				// 避免重复计算位置
+				$this.addClass('js-active');
+
+				// 圆的半径 raduis
+				var width = $menuList.width(),
+					radius = width / 2;
+
+				// 圆形菜单的起始、终止角度
+				var startAngle = 0,
+					endAngle = 360;
+
+				// 两个子菜单间的夹角 gap
+				var total = $menuItem.length,
+					gap = (endAngle - startAngle)/total;
+
+				// 角度->弧度
+				var radian = Math.PI / 180;
+
+				/*
+				 * 计算并确定各个子菜单的最终位置
+				 */
+				$.each($menuItem, function(index, item){
+
+					// 当前子菜单与x轴正向的夹角 θ （角度->弧度）
+					var myAngle = (startAngle + gap*index) * radian;  // θ
+
+					// 计算当前子菜单相对于左上角(0,0)的坐标 (x,y)
+					var myX = radius + radius * Math.cos( myAngle ), // x=r+rcos(θ)
+						myY = radius + radius * Math.sin( myAngle ); // y=r+rsin(θ)
+				
+					// 设置当前子菜单的位置 (left,top) = (x,y)
+					$(this).css({
+						left: myX + 'px',
+						top:  myY + 'px'
+					});
+		    	});
+			}
+
+			$menuList.toggleClass('active');
+		});
+		// 子菜单click事件
+		$('.home-menu-item').on('click', function(e){
+			var $this = $(this);
+			$('#stage-iframe').attr('src', $this.data('src'));
+		});
+	})();
+</script>
+<%- include include/footer %>

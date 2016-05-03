@@ -1,0 +1,82 @@
+<%- include include/head-begin %>
+<%- include include/css %>
+<%- include include/head-end %>
+
+<%- include include/site-header %>
+<%- include include/sidebar %>
+<div class="main">
+	<ul class="breadcrumb mb10">
+		<li class="active">侧边栏管理</li>
+	</ul>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="pt6 pb6 tr">
+				<a class="btn btn-primary" href="/admin/sidebar/detail"><i class="fa fa-plus"></i> 添加</a>
+			</div>
+		</div>
+		<div class="panel-body clearfix" id="table">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>标题</th>
+						<th>类别</th>
+						<th width="100px">修改</th>
+						<th width="100px">删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% sidebars.forEach(function(item){ %>
+					<tr>
+						<td><%= item.title %></td>
+						<td><%= item.categoryName %></td>
+						<td>
+							<a class="btn btn-primary" href="/admin/sidebar/detail/<%= item._id %>" ><i class="fa fa-pencil"></i> 修改</a>
+						</td>
+						<td>
+							<a class="btn btn-danger delete-btn" href="javascript:;" data-id="<%= item._id %>"><i class="fa fa-trash"></i> 删除</a>
+						</td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<%- include include/js %>
+<script type="text/javascript">
+	// 删除
+	$('#table').on('click', '.delete-btn', function(e){
+		var $this = $(this);
+
+		util.confirm({
+			content: '确定删除？',
+			type: 'delete',
+			callback: function(){
+				var _data = {
+					data: {id: $this.data('id')},
+					url: '/admin/sidebar/del',
+					success: function(data){
+						if(data.status == 1){
+							util.promot({
+								content: data.msg,
+								type: 'success',
+								callback: function(){
+									window.location.reload();
+								}
+							});
+						}
+						else{
+							util.promot({
+								content: data.msg,
+								type: 'error'
+							});
+						}
+					}
+				};
+
+				util.ajax(_data);
+			}
+		});
+	});
+</script>
+<%- include include/footer %>

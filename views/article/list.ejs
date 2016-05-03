@@ -1,0 +1,74 @@
+<%- include ../include/header %>
+<%- include ../include/site-header %>
+
+<!-- main begin -->
+<div class="main container" id="main">
+	<div class="row">
+		<div class="col-1 col-sm-0"></div>
+		<div class="col-9 col-sm-12 pt15">
+			 <% if(pagination.pageTotal == 0){ %> <p class="pt10 tc color-grey font16">没找到相关文章&nbsp;~_~!</p> <% } %>
+			<div class="articles <% if(pagination.pageTotal == 0){ %> hide <% } %>">
+				<ul class="post-list">
+					<% articles.forEach(function(item){ %>
+					<li>
+						<a class="post-title te" href="/article/detail/<%= item.id %>"><%= item.title %></a>
+						<p class="post-summary"><%= item.summary %></p>
+						<p class="post-footer">
+							<span><%= moment(item.meta.createAt).format('YYYY年MM月DD日') %></span>
+							<!-- <span class="ml6"><i class="fa fa-eye mr2"></i><%= item.pv %></span> -->
+							<a class="fr" href="/article/detail/<%= item.id %>">阅读全文</a>
+						</p>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+			<div class="pagination-container <% if(pagination.pageTotal == 0 || pagination.pageTotal == 1){ %> hide <% } %>">
+				<div class="pagination mt20">
+					<ul>
+						<% if(pagination.pageIndex <= 1){ %>
+							<li class="fl disabled">
+								<a href="javascript:;" title="已经是第一页啦"><i class="fa fa-angle-left"></i></a>
+							</li>
+						<% } %>
+						<% if(pagination.pageIndex > 1){ %>
+							<li class="fl">
+								<% if(s == ''){ %>
+								<a href="<%= pagination.pageUrl %>?category=<%= category %>&amp;pageIndex=<%= pagination.pageIndex-1 %>" title="上一页"><i class="fa fa-angle-left"></i></a>
+								<% } %>
+								<% if(s != ''){ %>
+								<a href="<%= pagination.pageUrl %>?s=<%= encodeURIComponent(s) %>&amp;category=<%= category %>&amp;pageIndex=<%= pagination.pageIndex-1 %>" title="上一页"><i class="fa fa-angle-left"></i></a>
+								<% } %>
+							</li>
+						<% } %>
+						<% if(pagination.pageIndex >= pagination.pageTotal){ %>
+							<li class="fl disabled ml8">
+								<a href="javascript:;" title="已经是最后一页啦"><i class="fa fa-angle-right"></i></a>
+							</li>
+						<% } %>
+						<% if(pagination.pageIndex < pagination.pageTotal){ %>
+							<li class="fl ml8">
+								<% if(s == ''){ %>
+								<a href="<%= pagination.pageUrl %>?category=<%= category %>&amp;pageIndex=<%= pagination.pageIndex+1 %>" title="下一页"><i class="fa fa-angle-right"></i></a>
+								<% } %>
+								<% if(s != ''){ %>
+								<a href="<%= pagination.pageUrl %>?s=<%= encodeURIComponent(s) %>&amp;category=<%= category %>&amp;pageIndex=<%= pagination.pageIndex+1 %>" title="下一页"><i class="fa fa-angle-right"></i></a>
+								<% } %>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-2 col-sm-0 pt15">
+			<%- include ../include/site-sidebar %>
+		</div>
+	</div>
+</div>
+<!-- main end -->
+
+<%- include ../include/site-footer %>
+<%- include ../include/js %>
+<script type="text/javascript">
+
+</script>
+<%- include ../include/footer %>

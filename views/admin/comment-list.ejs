@@ -1,0 +1,136 @@
+<%- include include/head-begin %>
+<%- include include/css %>
+<link rel="stylesheet" type="text/css" href="/admin/assets/lib/datetimepicker/datetimepicker.min.css">
+<%- include include/head-end %>
+
+<%- include include/site-header %>
+<%- include include/sidebar %>
+<div class="main">
+	<ul class="breadcrumb mb10">
+		<li class="active">评论管理</li>
+	</ul>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="pt6 pb6">
+				<form type="GET" action="/admin/comment/list" class="inline-block">
+					<input class="input p6 font12 radius4" placeholder="起始日期" name="startTime" value="<%= startTime %>" type="text" id="datetimepicker"/>
+					<input class="input p6 font12 radius4" placeholder="截止日期" name="endTime" value="<%= endTime %>" type="text" id="datetimepicker2"/>
+					<input type="hidden" value="1" name="pageIndex">
+					<button class="btn btn-primary" type="submit">搜索</button>
+				</form>
+			</div>
+		</div>
+		<div class="panel-body clearfix <% if(pagination.pageIndex > pagination.pageTotal){ %>hide<% } %>" id="table">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="100px">昵称</th>
+						<th>内容</th>
+						<th width="100px">发布时间</th>
+						<th width="200px">文章标题</th>
+						<th width="100px">查看</th>
+						<th width="100px">删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% comments.forEach(function(item){ %>
+					<tr>
+						<td class="tb"><%= item.nickname %></td>
+						<td class="tb"><%= item.content %></td>
+						<td><%= moment(item.meta.createAt).format("YYYY-MM-DD") %></td>
+						<td><%= item.article.title %></td>
+						<td>
+							<a class="btn btn-primary" href="/article/detail/<%= item.article._id %>?bgView=true" target="_blank"><i class="fa fa-eye"></i> 查看</a>
+						</td>
+						<td>
+							<a class="btn btn-danger delete-btn" href="javascript:;" data-id="<%= item._id %>"><i class="fa fa-trash"></i> 删除</a>
+						</td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+			<div class="inline-block mt30">共<span class="font-bold"><%= pagination.pageTotal %></span>页，<span class="font-bold"><%= pagination.total %></span>条数据</div>
+			<div class="pagination fr mt30 ml30">
+				<ul>
+					<!-- 首页 -->
+					<% if(pagination.pageIndex == 1){ %>
+						<li class="disabled"><a href="javascript:;">&laquo;</a></li>
+					<% } %>
+					<% if(pagination.pageIndex != 1){ %>
+						<li><a href="<%= pagination.url %>?pageIndex=1&amp;startTime=<%= startTime %>&amp;endTime=<%= endTime %>">&laquo;</a></li>
+					<% } %>
+					<!-- 中间页码 -->
+					<% for(var i = pagination.pageStart; i < pagination.pageEnd + 1; i++){ %>
+						<% if(pagination.pageIndex != i){ %>
+							<li><a href="<%= pagination.url %>?pageIndex=<%= i %>&amp;startTime=<%= startTime %>&amp;endTime=<%= endTime %>"><%= i %></a></li>
+						<% } %>
+						<% if(pagination.pageIndex == i){ %>
+							<% if(pagination.pageIndex == 1 || pagination.pageIndex == pagination.pageTotal){ %>
+								<li class="active disabled"><a href="javascript:;"><%= i %></a></li>
+							<% } %>
+							<% if(pagination.pageIndex != 1 && pagination.pageIndex != pagination.pageTotal){ %>
+								<li class="active"><a href="<%= pagination.url %>?pageIndex=<%= i %>&amp;startTime=<%= startTime %>&amp;endTime=<%= endTime %>"><%= i %></a></li>
+							<% } %>
+						<% } %>
+					<% } %>
+					<!-- 尾页 -->
+					<% if(pagination.pageIndex == pagination.pageTotal){ %>
+						<li class="disabled"><a href="javascript:;">&raquo;</a></li>
+					<% } %>
+					<% if(pagination.pageIndex != pagination.pageTotal){ %>
+						<li><a href="<%= pagination.url %>?pageIndex=<%= pagination.pageTotal %>&amp;startTime=<%= startTime %>&amp;endTime=<%= endTime %>">&raquo;</a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include include/js %>
+<script src="/admin/assets/lib/datetimepicker/datetimepicker.min.js"></script>
+<script type="text/javascript">
+	$('#datetimepicker').datetimepicker({
+		timepicker:false,
+		lang:'ch',
+		format:'Y-m-d'
+	});
+	$('#datetimepicker2').datetimepicker({
+		timepicker:false,
+		lang:'ch',
+		format:'Y-m-d'
+	});
+	// 删除
+	$('#table').on('click', '.delete-btn', function(e){
+		var $this = $(this);
+
+		util.confirm({
+			content: '确定删除？',
+			type: 'delete',
+			callback: function(){
+				var _data = {
+					data: {id: $this.data('id')},
+					url: '/admin/comment/del',
+					success: function(data){
+						if(data.status == 1){
+							util.promot({
+								content: data.msg,
+								type: 'success',
+								callback: function(){
+									window.location.reload();
+								}
+							});
+						}
+						else{
+							util.promot({
+								content: data.msg,
+								type: 'error'
+							});
+						}
+					}
+				};
+
+				util.ajax(_data);
+			}
+		});
+	});
+</script>
+<%- include include/footer %>
