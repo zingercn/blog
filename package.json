@@ -15,7 +15,7 @@
     "merge-descriptors": "^1.0.1",
     "method-override": "^2.3.2",
     "moment": "^2.9.0",
-    "mongoose": "^4.4.7",
+    "mongoose": "^5.10.7",
     "morgan": "^1.5.2",
     "multer": "^0.1.8",
     "underscore": "^1.8.3"
